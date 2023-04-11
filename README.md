@@ -1,180 +1,98 @@
 # Ex-04-Multivariate-Analysis
-
-
-
-AIM:
-
+# Aim
 To perform Multivariate EDA on the given data set.
 
-EXPLANATION:
-
+# Explanation
 Exploratory data analysis is used to understand the messages within a dataset. This technique involves many iterative processes to ensure that the cleaned data is further sorted to better understand the useful meaning.The primary aim with exploratory analysis is to examine the data for distribution, outliers and anomalies to direct specific testing of your hypothesis.
 
-ALGORITHM:
-
-Step1:
-
+# Algorithm
+# Step1
 Import the built libraries required to perform EDA and outlier removal.
 
-Step2:
-
+# Step2
 Read the given csv file.
 
-Step3:
-
+# Step3
 Convert the file into a dataframe and get information of the data.
 
-Step4:
-
+# Step4
 Return the objects containing counts of unique values using (value_counts()).
 
-Step5:
-
+# Step5
 Plot the counts in the form of Histogram or Bar Graph.
 
-Step6:
-
+# Step6
 Use seaborn the bar graph comparison of data can be viewed.
 
-Step7:
-
+# Step7
 Find the pairwise correlation of all columns in the dataframe.corr()
 
-Step8:
-
+# Step8
 Save the final data set into the file.
 
-PROGRAM:
+# Code
+```
+Developed by : SAILESHKUMAR A
 
-Developed by :Saileshkumar A
-Registration Number :212222230126
+Registration Number : 212222230126
 
 import pandas as pd
-
-import numpy as np
-
+import numpy as py
 import seaborn as sns
-
 import matplotlib.pyplot as plt
 
-df=pd.read_csv("SuperStore.csv")
-
-df.head(6)
-
+df=pd.read_csv('SuperStore.csv')
+df
+df.head()
 df.info()
-
 df.describe()
-
 df.isnull().sum()
+df.dtypes
 
-df['Postal Code'] = df["Postal Code"].fillna(df['Postal Code'].mode()[0])
+sns.scatterplot(df['Postal Code'],df['Sales'],hue=df['Row ID'])
 
-df.isnull().sum()
-
-sns.scatterplot (df['Sales'])
+sns.barplot(x=df['Row ID'],y=df['Sales'],data=df)
 
 states=df.loc[:,["State","Sales"]]
-
 states=states.groupby(by=["State"]).sum().sort_values(by="Sales")
-
 plt.figure(figsize=(17,7))
-
-sbn.barplot(x=states.index,y="Sales",data=states)
-
+sns.barplot(x=states.index,y="Sales",data=states)
 plt.xticks(rotation = 90)
-
 plt.xlabel=("STATES")
-
 plt.ylabel=("SALES")
-
 plt.show()
 
-states=df.loc[:,["State","Postal Code"]]
-
-states=states.groupby(by=["State"]).sum().sort_values(by="Postal Code")
-
-plt.figure(figsize=(17,7))
-
-sns.barplot(x=states.index,y="Postal Code",data=states)
-
-plt.xticks(rotation = 90)
-
-plt.xlabel=("STATES")
-
-plt.ylabel=("Postal Code")
-
-plt.show()
-
-states=df.loc[:,["Segment","Sales"]]
-
-states=states.groupby(by=["Segment"]).sum().sort_values(by="Sales")
-
-#plt.figure(figsize=(10,7))
-
-sbn.barplot(x=states.index,y="Sales",data=states)
-
-plt.xticks(rotation = 90)
-
-plt.xlabel=("SEGMENT")
-
-plt.ylabel=("SALES")
-
-plt.show()
-
-sns.barplot(df['Postal Code'])
+sns.barplot(df['Postal Code'],df['Ship Mode'],hue=df['Region'])
 
 df.corr()
-
 sns.heatmap(df.corr(),annot=True)
+```
+# Output
+# Data
+![image](https://user-images.githubusercontent.com/113497410/231059203-b38b5e87-c926-4d0a-99c3-b53b08a00887.png)
+# Data head
+![image](https://user-images.githubusercontent.com/113497410/231059278-6002be2a-cef6-4865-879f-a78a350bdc85.png)
+# Data Information
+![image](https://user-images.githubusercontent.com/113497410/231059376-195cb6e6-c50f-4f24-837d-31b720979f46.png)
+# Data describe
+![image](https://user-images.githubusercontent.com/113497410/231059467-5fa0697f-3cd6-4fba-a3fd-8663abc8812e.png)
+# Data Null Values
+![image](https://user-images.githubusercontent.com/113497410/231059543-017074ce-9ae3-4fd9-9673-01f02635a45a.png)
+# Data Types
+![image](https://user-images.githubusercontent.com/113497410/231059646-2a0faf92-4cea-4192-8081-fe6fb7e1555a.png)
+# Scatterplot
+![image](https://user-images.githubusercontent.com/113497410/231059715-52482bae-9402-4fda-a0af-efc3f4d8746c.png)
+# Barplot
+![image](https://user-images.githubusercontent.com/113497410/231059815-90908243-e873-48d3-b5a0-eb083dfa4a63.png)
 
+![image](https://user-images.githubusercontent.com/113497410/231059862-5b7d260e-258d-4e79-b853-9a11c835f533.png)
 
+![image](https://user-images.githubusercontent.com/113497410/231059922-62414fef-a633-4042-bc15-c3dbfa0eb7de.png)
+# Correlation and Heatmap
+![image](https://user-images.githubusercontent.com/113497410/231060019-0642f42b-15bc-41e5-b13b-1db398f83823.png)
 
-OUTPUT:
-
-SuperStore.csv
-
-df.head()
-
-![image](https://user-images.githubusercontent.com/113497410/231058226-01a1c3f0-c81a-49de-9b2a-4071f06f744c.png)
-
-df.info()
-
-![image](https://user-images.githubusercontent.com/113497410/231058276-7d76dbfb-b7d5-414d-8779-535d9b8b0c39.png)
-
-df.describe()
-
-![image](https://user-images.githubusercontent.com/113497410/231058313-0b15ea04-8afd-4e1d-ba7c-9ecd2200b715.png)
-
-describe
-
-df.isnull().sum()
-
-![image](https://user-images.githubusercontent.com/113497410/231058379-14188d38-dc52-442d-8914-d3e6748cb8ab.png)
-
-AFTER CLEANING: df.isnull().sum()
-
-![image](https://user-images.githubusercontent.com/113497410/231058409-6a796eb2-e948-482d-9d33-2b99cff42c0b.png)
-
-
-after
-
-Scatterplot
-
-![image](https://user-images.githubusercontent.com/113497410/231058451-7cda28a4-0894-4434-bc9c-fb89f0f41e1b.png)
-
-Barplot
-
-![image](https://user-images.githubusercontent.com/113497410/231058505-d8b67284-d923-4131-943e-a1a29678107d.png)
-![image](https://user-images.githubusercontent.com/113497410/231058527-026750b8-6cdd-46b3-9fdf-90b2018b4676.png)
-![image](https://user-images.githubusercontent.com/113497410/231058557-476b0962-ea19-4be0-8619-126f58a975a7.png)
-
-HeatMap
-
-![image](https://user-images.githubusercontent.com/113497410/231058611-90b5c045-4fec-469e-85dc-3e19ed62d525.png)
-
-
-RESULT:
-
+![image](https://user-images.githubusercontent.com/113497410/231060048-a88aaee5-4e72-40aa-9381-755b6631cca1.png)
+# Result
 Thus the program to perform EDA on the given data set is successfully executed.
 
 
